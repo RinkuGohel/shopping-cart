@@ -1,8 +1,13 @@
-import React from "react";
+import React, { useEffect } from "react";
 import PropTypes from "prop-types";
 import { Link } from "react-router-dom";
+import { selectProductIdToView } from "../actions/actionCreators";
+import store from "../sagas/store";
 
 const ProductItem = ({ id, image, price, title }) => {
+   useEffect(() => {
+      store.dispatch(selectProductIdToView());
+   }, []);
    return (
       <div className="col-md-3 col-sm-6 col-xs-6">
          <div class="card">

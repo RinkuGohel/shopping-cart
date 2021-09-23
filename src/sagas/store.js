@@ -2,7 +2,7 @@ import { createStore, applyMiddleware } from "redux";
 import createSagaMiddleware from "redux-saga";
 import { composeWithDevTools } from "redux-devtools-extension";
 import cartReducer from "../reducers/cartReducer";
-import sagas from "./rootSaga";
+import sagas from "../sagas/rootSaga";
 import { combineReducers } from "redux";
 
 const composeEnhancers = composeWithDevTools({});

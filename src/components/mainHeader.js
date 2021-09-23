@@ -12,8 +12,18 @@ const MainHeader = (props) => {
                   </Link>
                   <div class="text-end ml-auto">
                      <Link to="/cart-detail">
-                        <button type="button" class="btn btn-outline-light me-2">
-                           View Cart ({props.cart.products.length})
+                        <button
+                           type="button"
+                           class="btn btn-outline-light me-2 position-relative"
+                           style={{ cursor: "pointer" }}
+                        >
+                           View Cart
+                           <span
+                              class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger"
+                              style={{ background: "black", position: "absolute" }}
+                           >
+                              {props.cart.products.length}
+                           </span>
                         </button>
                      </Link>
                   </div>

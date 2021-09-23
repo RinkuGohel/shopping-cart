@@ -2,9 +2,10 @@
 
 import { call, fork, put, take } from "redux-saga/effects";
 
-import { SET_VIEW_PRODUCT_ID } from "../actions/actionTypes";
+import { SET_VIEW_PRODUCT_ID, REMOVE_SELECTED_PRODUCT } from "../actions/actionTypes";
 import Api from "../MockApi";
-import { selectProductToView } from "../actions/actionCreators";
+import { selectProductToView, removeProdctDisplay } from "../actions/actionCreators";
+import { FormText } from "react-bootstrap";
 
 export function* watchViewProductDetail() {
    while (true) {
@@ -14,6 +15,15 @@ export function* watchViewProductDetail() {
    }
 }
 
+export function* removeProduct() {
+   while (true) {
+      const { productId, products } = yield take(REMOVE_SELECTED_PRODUCT);
+      const cartProducts = yield call(Api.removeProduct, parseInt(productId), products);
+      yield put(removeProdctDisplay(cartProducts));
+   }
+}
+
 export default function* rootSaga() {
    yield fork(watchViewProductDetail);
+   yield fork(removeProduct);
 }
